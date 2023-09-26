@@ -1,6 +1,7 @@
 package pages;
 
 import com.codeborne.selenide.SelenideElement;
+import pages.components.CalendarComponent;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
@@ -10,6 +11,7 @@ import static com.codeborne.selenide.Selenide.executeJavaScript;
 public class RegistrationPage {
 
     ///// SelenideElements
+    CalendarComponent calendar = new CalendarComponent();
     SelenideElement titleLabel = $(".practice-form-wrapper"),
             firstNameInput = $("#firstName"),
             lastNameInput = $("#lastName"),
@@ -59,6 +61,21 @@ public class RegistrationPage {
 
     public RegistrationPage setUserNumber(String value) {
         userNumberInput.setValue(value);
+
+        return this;
+    }
+
+    public RegistrationPage setDateOfBirth(String day, String month, String year) {
+        $("#dateOfBirthInput").click();
+        calendar.setDate("30", "July", "2008");
+
+        return this;
+    }
+
+
+    public RegistrationPage checkResult(String key, String value) {
+        $(".table-responsive").$(byText(key)).parent()
+                .shouldHave(text(value));
 
         return this;
     }
