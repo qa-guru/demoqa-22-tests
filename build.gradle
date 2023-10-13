@@ -1,5 +1,6 @@
 plugins {
     id 'java-library'
+    id 'io.qameta.allure' version '2.11.2'
 }
 
 repositories {
@@ -8,6 +9,22 @@ repositories {
 
 group 'guru.qa'
 version '1.0'
+
+def allureVersion = "2.21.0"
+
+allure {
+    report {
+        version.set(allureVersion)
+    }
+    adapter {
+        aspectjWeaver.set(true)
+        frameworks {
+            junit5 {
+                adapterVersion.set(allureVersion)
+            }
+        }
+    }
+}
 
 dependencies {
     testImplementation (
