@@ -36,6 +36,7 @@ public class RegistrationRemoteTests {
                 "enableVNC", true,
                 "enableVideo", true
         ));
+        Configuration.browserCapabilities = capabilities;
     }
 
     @AfterEach
